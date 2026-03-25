@@ -317,11 +317,14 @@ STRICT FORMAT:
 EXPLANATION:
 """
 
+        import os
+        from dotenv import load_dotenv
+        load_dotenv()
         try:
             response = requests.post(
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers={
-                    "Authorization": "Bearer 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",  # ⚠️ replace if needed
+                    "Authorization": "Bearer {os.getenv('OPENROUTER_API_KEY')}",  # ⚠️ replace if needed
                     "Content-Type": "application/json"
                 },
                 json={
