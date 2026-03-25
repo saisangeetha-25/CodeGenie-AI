@@ -290,6 +290,7 @@ def logout():
 
 @app.route("/home", methods=["GET","POST"])
 def home():
+    generated_code = ""
     if "username" not in session or session.get("is_admin"):
         return redirect("/login")
 
@@ -319,25 +320,39 @@ EXPLANATION:
 
         import os
         from dotenv import load_dotenv
+        import requests
+
         load_dotenv()
+
+        api_key = os.getenv("OPENROUTER_API_KEY").strip()
+
+        print("RAW KEY:", api_key)  # debug
+
         try:
             response = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers={
-                    "Authorization": "Bearer {os.getenv('OPENROUTER_API_KEY')}",  # ⚠️ replace if needed
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": "openai/gpt-3.5-turbo",
-                    "messages": [{"role": "user", "content": prompt}],
-                    "temperature": 0.3
-                },
-                timeout=10
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": "Bearer " + api_key,
+                "Content-Type": "application/json",
+                "HTTP-Referer": "http://127.0.0.1:5000",   # VERY IMPORTANT
+                "X-Title": "CodeGenie AI",                 # VERY IMPORTANT
+            },
+            json={
+                "model": "openai/gpt-3.5-turbo",
+                "messages": [
+                    {"role": "user", "content": prompt}
+                ]
+            }
+        )
 
-            )
+            print("STATUS:", response.status_code)
+            print("RESPONSE:", response.text)
 
             result = response.json()
+            generated_code = result["choices"][0]["message"]["content"]
 
+        except Exception as e:
+            print("ERROR:", e)
             # ✅ DEBUG (VERY IMPORTANT)
             print("FULL API RESPONSE:", result)
             
@@ -394,7 +409,7 @@ EXPLANATION:
 
     return render_template("home.html",
         username=session["username"],
-        code_output=code_output,
+        code_output=generated_code,
         explanation_output=explanation_output,
         selected_language=selected_language
     )
