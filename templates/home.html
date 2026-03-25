@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code Gene AI</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-ruby.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<style>
+.copy-btn{
+margin:5px;
+padding:8px 12px;
+border:none;
+background:#00c3ff;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+.copy-btn:hover{
+background:#009ad6;
+}
+
+.loader{
+display:none;
+text-align:center;
+margin-top:20px;
+}
+</style>
+
+</head>
+
+
+<body>
+
+<div class="main-container">
+
+<div class="top-bar">
+
+<h3>Welcome, {{ username }}</h3>
+
+<div>
+<a href="/history" class="history-link">History</a>
+<a href="/profile" class="history-link">Profile</a>
+<a href="/bookmarks" class="history-link">Bookmarks</a>
+
+<a href="/feedback" class="history-link">Feedback</a>
+<a href="/logout" class="logout">Logout</a>
+</div>
+
+</div>
+
+<h1>Code Gene AI</h1>
+
+<div class="language-grid">
+
+<button type="button" onclick="selectLang('python',this)">Python</button>
+<button type="button" onclick="selectLang('java',this)">Java</button>
+<button type="button" onclick="selectLang('cpp',this)">C++</button>
+<button type="button" onclick="selectLang('c',this)">C</button>
+<button type="button" onclick="selectLang('javascript',this)">JavaScript</button>
+<button type="button" onclick="selectLang('ruby',this)">Ruby</button>
+<button type="button" onclick="selectLang('rust',this)">Rust</button>
+<button type="button" onclick="selectLang('go',this)">Go</button>
+
+</div>
+
+<form method="POST" onsubmit="return validateAndLoad()">
+
+<input type="hidden" name="language" id="selectedLanguage" required>
+
+<textarea name="question" placeholder="Enter your coding problem..." required></textarea>
+
+<button type="submit" class="generate-btn">Generate Code</button>
+
+</form>
+
+<div class="loader" id="loader">
+<p>Generating code... ⏳</p>
+</div>
+
+{% if code_output %}
+
+<div class="code-section">
+
+<h3>Generated Code</h3>
+
+<pre><code id="generatedCode" class="language-{{ selected_language }}">{{ code_output | safe }}</code></pre>
+
+<button onclick="copyCode()" class="copy-btn">Copy</button>
+
+<button onclick="bookmark()" class="copy-btn">⭐ Bookmark</button>
+
+<div id="outputBox" style="margin-top:15px; background:#111; padding:10px; color:#0f0;"></div>
+
+<form method="POST" action="/save_code">
+<textarea name="code" style="display:none;">{{ code_output | safe }}</textarea>
+<input type="text" name="filename" placeholder="Enter filename" required>
+
+<select name="filetype">
+<option value="txt">TXT</option>
+<option value="pdf">PDF</option>
+<option value="docx">Word</option>
+</select>
+
+<button type="submit" class="primary-btn">Download</button>
+</form>
+
+</div>
+
+{% endif %}
+
+{% if explanation_output %}
+
+<div class="explanation-section">
+<h3>Code Explanation</h3>
+<p style="white-space:pre-line">{{ explanation_output }}</p>
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+
+function selectLang(lang,btn){
+document.getElementById("selectedLanguage").value=lang
+document.querySelectorAll(".language-grid button").forEach(
+b=>b.classList.remove("active")
+)
+btn.classList.add("active")
+}
+
+function validateAndLoad(){
+let lang=document.getElementById("selectedLanguage").value
+if(!lang){
+alert("Please select a language")
+return false
+}
+document.getElementById("loader").style.display="block"
+return true
+}
+
+function copyCode(){
+let code=document.getElementById("generatedCode").innerText
+
+let textarea=document.createElement("textarea")
+textarea.value=code
+document.body.appendChild(textarea)
+textarea.select()
+
+try{
+document.execCommand("copy")
+alert("Copied!")
+}catch(err){
+alert("Copy failed")
+}
+
+document.body.removeChild(textarea)
+}
+
+
+
+function bookmark(){
+fetch("/bookmark",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({code:document.getElementById("generatedCode").innerText})
+})
+.then(()=>alert("Saved to favourites"))
+.catch(()=>alert("Error saving"))
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+if(typeof Prism!=="undefined"){
+Prism.highlightAll()
+}
+document.getElementById("loader").style.display="none"
+})
+
+</script>
+
+</body>
+</html>

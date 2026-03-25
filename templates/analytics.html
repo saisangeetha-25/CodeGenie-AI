@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h2>Analytics 📊</h2>
+
+<h3>🔥 Most Used Language: {{ top_lang.language if top_lang else "No  Data Yet" }}</h3>
+
+<canvas id="chart"></canvas>
+
+<script>
+const data = {{ data | tojson }};
+
+const labels = data.map(i => i.language);
+const counts = data.map(i => i.cnt);
+
+new Chart(document.getElementById("chart"),{
+type:'bar',
+data:{
+labels:labels,
+datasets:[{
+label:'Codes',
+data:counts
+}]
+}
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bookmarks</title>
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+.card{
+background:#1e293b;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
+pre{
+background:#111;
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Bookmarked Codes ⭐</h1>
+
+{% for item in records %}
+
+<div class="card">
+<pre>{{ item["code"] }}</pre>
+<p>{{ item["created_at"] }}</p>
+</div>
+
+{% endfor %}
+
+</body>
+</html>

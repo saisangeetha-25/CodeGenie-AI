@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Login</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:15px;
+width:400px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,0.2);
+}
+
+h2{
+margin-bottom:30px;
+}
+
+.option-box{
+display:flex;
+justify-content:space-between;
+gap:20px;
+}
+
+.box{
+flex:1;
+padding:30px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.user{
+background:#00c3ff;
+color:white;
+}
+
+.admin{
+background:#ff5e62;
+color:white;
+}
+
+.box:hover{
+transform:scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Select Login Type</h2>
+
+<div class="option-box">
+
+<div class="box user" onclick="goUser()">
+User Login
+</div>
+
+<div class="box admin" onclick="goAdmin()">
+Admin Login
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function goUser(){
+window.location.href="/login"
+}
+
+function goAdmin(){
+window.location.href="/admin_login"
+}
+
+</script>
+
+</body>
+</html>

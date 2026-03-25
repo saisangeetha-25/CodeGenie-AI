@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>All Feedback</title>
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+.card{
+background:#1e293b;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>User Feedback 📩</h1>
+
+{% for f in records %}
+<div class="card">
+<p><b>User:</b> {{ f["username"] }}</p>
+<p>{{ f["message"] }}</p>
+<p>{{ f["created_at"] }}</p>
+</div>
+{% endfor %}
+
+</body>
+</html>

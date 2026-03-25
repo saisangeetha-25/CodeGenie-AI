@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>History</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
+
+pre{
+background:#111;
+padding:10px;
+overflow:auto;
+border-radius:6px;
+}
+
+h3{
+color:#00c3ff;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Your History</h1>
+
+{% if records|length == 0 %}
+<p>No history found 😢</p>
+{% endif %}
+
+{% for item in records %}
+
+<div class="card">
+
+<h3>Language: {{ item["language"] }}</h3>
+
+<p><b>Question:</b> {{ item["question"] }}</p>
+
+<h4>Code:</h4>
+<pre><code>{{ item["code"] }}</code></pre>
+
+<h4>Explanation:</h4>
+<p style="white-space:pre-line">{{ item["explanation"] }}</p>
+
+<p><small>{{ item["created_at"] }}</small></p>
+
+</div>
+
+{% endfor %}
+
+<script>
+Prism.highlightAll();
+</script>
+
+</body>
+</html>
