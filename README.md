@@ -1,4 +1,4 @@
-# CodeGenie-AI : ode Generator and Explainer 🚀
+# CodeGenie-AI : Code Generator and Explainer 🚀
 
 An AI-powered Code Generator and Code Explainer built using Generative AI techniques. CodeGenie-AI helps developers generate code snippets from natural language prompts and provides detailed explanations of code functionality, making programming more accessible and productive.
 
