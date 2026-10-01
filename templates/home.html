@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Code Gene AI</title>
+<title>CODEGENIE AI</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet"/>
 
@@ -41,6 +41,59 @@ margin-top:20px;
 
 </head>
 
+<div id="logoutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.7);">
+
+<div style="
+width:400px;
+background:#1e293b;
+padding:25px;
+border-radius:12px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+">
+
+<h3 style="color:#00c3ff;">Before You Leave 👋</h3>
+
+<p style="margin:15px 0;">
+Would you like to share your feedback?
+</p>
+
+<a href="/feedback"
+style="
+display:inline-block;
+padding:10px 15px;
+background:#00c3ff;
+color:white;
+text-decoration:none;
+border-radius:8px;">
+Give Feedback
+</a>
+
+<a href="/logout"
+style="
+display:inline-block;
+padding:10px 15px;
+background:#555;
+color:white;
+text-decoration:none;
+border-radius:8px;
+margin-left:10px;">
+Logout Anyway
+</a>
+
+</div>
+</div>
+
+<script>
+function showLogoutPopup(){
+    document.getElementById("logoutModal").style.display="block";
+}
+</script>
+
 
 <body>
 
@@ -54,14 +107,19 @@ margin-top:20px;
 <a href="/history" class="history-link">History</a>
 <a href="/profile" class="history-link">Profile</a>
 <a href="/bookmarks" class="history-link">Bookmarks</a>
-
 <a href="/feedback" class="history-link">Feedback</a>
-<a href="/logout" class="logout">Logout</a>
+<button id="themeToggle" class="theme-btn">
+    🌙
+</button>
+
+<a href="#" onclick="showLogoutPopup()" class="logout">
+    Logout
+</a>
 </div>
 
 </div>
 
-<h1>Code Gene AI</h1>
+<h1>CODEGENIE AI</h1>
 
 <div class="language-grid">
 
@@ -191,5 +249,10 @@ document.getElementById("loader").style.display="none"
 
 </script>
 
+<footer style="text-align:center;padding:20px;color:#94a3b8;">
+CodeGenie AI © 2026 | AI-Powered Code Generation & Explanation Platform
+</footer>
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>

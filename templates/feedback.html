@@ -1,25 +1,165 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Feedback - Code Gene AI</title>
-    <link rel="stylesheet" href="/static/style.css">
+<title>Feedback | CodeGenie AI</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.feedback-card{
+    width:600px;
+    background:#1e293b;
+    padding:35px;
+    border-radius:18px;
+    border:1px solid rgba(0,195,255,0.3);
+    box-shadow:0 0 20px rgba(0,195,255,0.15);
+}
+
+.feedback-card h2{
+    text-align:center;
+    color:#00c3ff;
+    margin-bottom:10px;
+}
+
+.feedback-card p{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:25px;
+}
+
+textarea{
+    width:100%;
+    height:150px;
+    background:#111827;
+    color:white;
+    border:1px solid #334155;
+    border-radius:10px;
+    padding:15px;
+    resize:none;
+    margin-bottom:20px;
+}
+
+textarea:focus{
+    outline:none;
+    border-color:#00c3ff;
+}
+
+select{
+    width:100%;
+    padding:12px;
+    background:#111827;
+    color:white;
+    border:1px solid #334155;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    background:#00c3ff;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.submit-btn:hover{
+    background:#009ad6;
+}
+
+.back-btn{
+    display:block;
+    text-align:center;
+    margin-top:15px;
+    color:#00c3ff;
+    text-decoration:none;
+}
+
+/* ==========================
+   LIGHT MODE
+========================== */
+
+body.light-mode{
+    background:#f4f7fb;
+    color:#111827;
+}
+
+body.light-mode .feedback-card{
+    background:white;
+    color:#111827;
+    border:1px solid #dbeafe;
+    box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+body.light-mode .feedback-card p{
+    color:#475569;
+}
+
+body.light-mode textarea,
+body.light-mode select{
+    background:#f8fafc;
+    color:#111827;
+    border:1px solid #d1d5db;
+}
+</style>
 </head>
+
 <body>
-<div class="auth-box">
-    <h2>Submit Feedback</h2>
+
+<div class="feedback-card">
+
+    <h2>💬 Feedback</h2>
+
+    <p>Help us improve CodeGenie AI</p>
+
     <form method="POST">
-        <textarea name="message" placeholder="Your feedback..." required></textarea>
-        <button type="submit" class="primary-btn">Submit</button>
+
+        <textarea
+            name="message"
+            placeholder="Share your experience with CodeGenie AI..."
+            required></textarea>
 
         <select name="rating">
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
+
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Very Good</option>
+            <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Average</option>
+            <option value="1">⭐ Poor</option>
+
         </select>
+
+        <button type="submit" class="submit-btn">
+            Submit Feedback
+        </button>
+
     </form>
-   
+
+    <a href="/home" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
 </div>
+
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
+
 </body>
 </html>

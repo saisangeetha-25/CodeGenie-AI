@@ -1,62 +1,214 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>User Login</title>
+<title>CodeGenie AI - User Login</title>
+
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
 body{
-background:#0f172a;
-font-family:Arial;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-color:white;
+    background:#0f172a;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
 }
-.container{
-background:#1e293b;
-padding:40px;
-border-radius:12px;
-width:350px;
-text-align:center;
+
+.login-card{
+    width:450px;
+    background:#1e293b;
+    padding:40px;
+    border-radius:20px;
+
+    border:1px solid rgba(0,195,255,0.3);
+
+    box-shadow:
+    0 0 20px rgba(0,195,255,0.15),
+    0 0 40px rgba(0,195,255,0.08);
 }
+
+.logo{
+    text-align:center;
+    color:#00c3ff;
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+    margin-bottom:30px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#cbd5e1;
+}
+
 input{
-width:100%;
-padding:10px;
-margin:10px 0;
-border:none;
-border-radius:6px;
+    width:100%;
+    padding:14px;
+    background:#111827;
+    border:1px solid #334155;
+    border-radius:10px;
+    color:white;
+    font-size:15px;
 }
-button{
-width:100%;
-padding:10px;
-background:#00c3ff;
-border:none;
-color:white;
-border-radius:6px;
-cursor:pointer;
+
+input:focus{
+    outline:none;
+    border-color:#00c3ff;
+    box-shadow:0 0 10px rgba(0,195,255,0.3);
 }
-button:hover{
-background:#009ad6;
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    background:#00c3ff;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
 }
-a{
-color:#00c3ff;
-text-decoration:none;
+
+.login-btn:hover{
+    background:#009ad6;
+    transform:translateY(-2px);
 }
+
+.register-text{
+    text-align:center;
+    margin-top:20px;
+    color:#cbd5e1;
+}
+
+.register-text a{
+    color:#00c3ff;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.register-text a:hover{
+    text-decoration:underline;
+}
+
+.back-link{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#94a3b8;
+    text-decoration:none;
+}
+
+.back-link:hover{
+    color:#00c3ff;
+}
+
+/* ==========================
+   LIGHT MODE
+========================== */
+
+body.light-mode{
+    background:#f4f7fb;
+    color:#111827;
+}
+
+body.light-mode .login-card{
+    background:white;
+    color:#111827;
+    border:1px solid #dbeafe;
+
+    box-shadow:
+    0 0 10px rgba(0,0,0,0.08);
+}
+
+body.light-mode .subtitle,
+body.light-mode label,
+body.light-mode .register-text{
+    color:#475569;
+}
+
+body.light-mode input{
+    background:#f8fafc;
+    color:#111827;
+    border:1px solid #d1d5db;
+}
+
+body.light-mode .back-link{
+    color:#475569;
+}
+
 </style>
+
 </head>
 
 <body>
-<div class="container">
-<h2>User Login</h2>
 
-<form method="POST">
-<input type="email" name="username" placeholder="Enter Email" required>
-<input type="password" name="password" placeholder="Password" required>
+<div class="login-card">
 
-<button type="submit">Login</button>
-</form>
+    <div class="logo">
+        CODEGENIE AI
+    </div>
 
-<p>New User? <a href="/register">Register here</a></p>
+    <div class="subtitle">
+        Sign in to continue your AI coding journey
+    </div>
+
+    <form method="POST">
+
+        <div class="input-group">
+            <label>Email Address</label>
+            <input
+                type="email"
+                name="username"
+                placeholder="Enter your email"
+                required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required>
+        </div>
+
+        <button type="submit" class="login-btn">
+            Login
+        </button>
+
+    </form>
+
+    <div class="register-text">
+        New User?
+        <a href="/register">Create Account</a>
+    </div>
+
+    <a href="/select_role" class="back-link">
+        ← Back to Role Selection
+    </a>
+
 </div>
+
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
+
 </body>
 </html>

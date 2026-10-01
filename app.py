@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, send_file
 import sqlite3
 import requests
 import re
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from io import BytesIO
@@ -9,7 +10,7 @@ from docx import Document
 from fpdf import FPDF
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"
+app.secret_key = "SECRET_KEY"
 
 # ---------------- DATABASE ----------------
 
@@ -17,7 +18,7 @@ def init_db():
     conn = sqlite3.connect("users.db")
     c = conn.cursor()
 
-    c.execute("PRAGMA journal_model=WAL")
+    c.execute("PRAGMA journal_mode=WAL")
 
     c.execute("""
         CREATE TABLE IF NOT EXISTS users(
@@ -87,6 +88,13 @@ def get_conn():
 
 @app.route("/")
 def start():
+    return render_template("landing.html")
+    #return render_template("select_login.html")
+
+#---------------SELECT LOGIN TYPE--------------
+
+@app.route("/select_role")
+def select_role():
     return render_template("select_login.html")
 
 # ---------------- REGISTER ----------------

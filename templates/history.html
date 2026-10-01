@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>History</title>
+<title>History | CodeGenie AI</title>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet"/>
 
@@ -12,65 +12,244 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
 
 <style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
 body{
-background:#0f172a;
-color:white;
-font-family:Arial;
-padding:20px;
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+    transition:0.3s;
+}
+
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#111827;
+    border-bottom:1px solid rgba(0,195,255,0.3);
+}
+
+.logo{
+    color:#00c3ff;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#00c3ff;
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#009ad6;
+}
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+.page-title{
+    text-align:center;
+    color:#00c3ff;
+    margin-bottom:35px;
+    font-size:32px;
+}
+
+.empty-history{
+    text-align:center;
+    font-size:20px;
+    margin-top:50px;
+    color:#cbd5e1;
 }
 
 .card{
-background:#1e293b;
-padding:20px;
-margin-bottom:20px;
-border-radius:10px;
+    background:#1e293b;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    border:1px solid rgba(0,195,255,0.25);
+    box-shadow:0 0 15px rgba(0,195,255,0.1);
+}
+
+.language-tag{
+    display:inline-block;
+    background:#00c3ff;
+    color:white;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+.section-title{
+    color:#00c3ff;
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+.question-box{
+    background:#111827;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
 }
 
 pre{
-background:#111;
-padding:10px;
-overflow:auto;
-border-radius:6px;
+    background:#111827;
+    padding:15px;
+    border-radius:10px;
+    overflow:auto;
 }
 
-h3{
-color:#00c3ff;
+.explanation-box{
+    background:#111827;
+    padding:15px;
+    border-radius:10px;
+    white-space:pre-line;
 }
+
+.timestamp{
+    margin-top:20px;
+    text-align:right;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ==========================
+   LIGHT MODE
+========================== */
+
+body.light-mode{
+    background:#f4f7fb;
+    color:#111827;
+}
+
+body.light-mode .top-bar{
+    background:white;
+    border-bottom:1px solid #dbeafe;
+}
+
+body.light-mode .card{
+    background:white;
+    color:#111827;
+    border:1px solid #dbeafe;
+    box-shadow:0 0 10px rgba(0,0,0,0.08);
+}
+
+body.light-mode .question-box,
+body.light-mode .explanation-box,
+body.light-mode pre{
+    background:#f8fafc;
+    color:#111827;
+}
+
+body.light-mode .empty-history{
+    color:#475569;
+}
+
+body.light-mode .timestamp{
+    color:#64748b;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<h1>Your History</h1>
+<div class="top-bar">
 
-{% if records|length == 0 %}
-<p>No history found 😢</p>
-{% endif %}
+    <div class="logo">
+        CODEGENIE AI
+    </div>
 
-{% for item in records %}
-
-<div class="card">
-
-<h3>Language: {{ item["language"] }}</h3>
-
-<p><b>Question:</b> {{ item["question"] }}</p>
-
-<h4>Code:</h4>
-<pre><code>{{ item["code"] }}</code></pre>
-
-<h4>Explanation:</h4>
-<p style="white-space:pre-line">{{ item["explanation"] }}</p>
-
-<p><small>{{ item["created_at"] }}</small></p>
+    <a href="/home" class="back-btn">
+        ← Dashboard
+    </a>
 
 </div>
 
-{% endfor %}
+<div class="container">
+
+    <h1 class="page-title">
+        📜 Generation History
+    </h1>
+
+    {% if records|length == 0 %}
+
+        <div class="empty-history">
+            No history found 😢
+        </div>
+
+    {% endif %}
+
+    {% for item in records %}
+
+    <div class="card">
+
+        <div class="language-tag">
+            {{ item["language"]|upper }}
+        </div>
+
+        <h3 class="section-title">
+            Prompt
+        </h3>
+
+        <div class="question-box">
+            {{ item["question"] }}
+        </div>
+
+        <h3 class="section-title">
+            Generated Code
+        </h3>
+
+        <pre>
+<code class="language-{{ item['language'] }}">
+{{ item["code"] }}
+</code>
+        </pre>
+
+        <h3 class="section-title">
+            Explanation
+        </h3>
+
+        <div class="explanation-box">
+            {{ item["explanation"] }}
+        </div>
+
+        <div class="timestamp">
+            {{ item["created_at"] }}
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
 
 <script>
 Prism.highlightAll();
 </script>
 
+<footer style="text-align:center;padding:20px;color:#94a3b8;">
+CodeGenie AI © 2026 | AI-Powered Code Generation & Explanation Platform
+</footer>
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>

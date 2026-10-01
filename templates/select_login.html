@@ -1,60 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Select Login</title>
+<title>CodeGenie AI - Select Role</title>
 
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
 body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(135deg,#1e3c72,#2a5298);
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+    background:#0f172a;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
 }
 
 .container{
-background:white;
-padding:40px;
-border-radius:15px;
-width:400px;
-text-align:center;
-box-shadow:0 0 20px rgba(0,0,0,0.2);
+    width:700px;
+    background:#1e293b;
+    padding:50px;
+    border-radius:20px;
+    text-align:center;
+
+    border:1px solid rgba(0,195,255,0.3);
+
+    box-shadow:
+    0 0 20px rgba(0,195,255,0.15),
+    0 0 40px rgba(0,195,255,0.08);
 }
 
-h2{
-margin-bottom:30px;
+.logo{
+    color:#00c3ff;
+    font-size:40px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.tagline{
+    color:#cbd5e1;
+    margin-bottom:40px;
 }
 
 .option-box{
-display:flex;
-justify-content:space-between;
-gap:20px;
+    display:flex;
+    gap:30px;
+    justify-content:center;
 }
 
 .box{
-flex:1;
-padding:30px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-transition:0.3s;
-}
+    flex:1;
+    padding:40px 20px;
+    border-radius:18px;
+    cursor:pointer;
+    transition:0.3s;
 
-.user{
-background:#00c3ff;
-color:white;
-}
+    background:#111827;
 
-.admin{
-background:#ff5e62;
-color:white;
+    border:1px solid rgba(0,195,255,0.25);
 }
 
 .box:hover{
-transform:scale(1.05);
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 0 15px rgba(0,195,255,0.4),
+    0 0 30px rgba(0,195,255,0.2);
 }
+
+.icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.role-title{
+    color:#00c3ff;
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.role-desc{
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.footer-text{
+    margin-top:35px;
+    color:#94a3b8;
+    font-size:14px;
+}
+
 </style>
 
 </head>
@@ -63,33 +103,65 @@ transform:scale(1.05);
 
 <div class="container">
 
-<h2>Select Login Type</h2>
+    <div class="logo">
+        CODEGENIE AI
+    </div>
 
-<div class="option-box">
+    <div class="tagline">
+        AI-Powered Code Generation and Explanation Platform
+    </div>
 
-<div class="box user" onclick="goUser()">
-User Login
-</div>
+    <div class="option-box">
 
-<div class="box admin" onclick="goAdmin()">
-Admin Login
-</div>
+        <div class="box" onclick="goUser()">
 
-</div>
+            <div class="icon">👤</div>
+
+            <div class="role-title">
+                User Login
+            </div>
+
+            <div class="role-desc">
+                Explore AI-powered coding assistance and generate relative codes.
+            </div>
+
+        </div>
+
+        <div class="box" onclick="goAdmin()">
+
+            <div class="icon">🛡️</div>
+
+            <div class="role-title">
+                Admin Login
+            </div>
+
+            <div class="role-desc">
+                Access administrative controls, user management and platform analytics.
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-text">
+        Choose your role to continue
+    </div>
 
 </div>
 
 <script>
 
 function goUser(){
-window.location.href="/login"
+    window.location.href="/login";
 }
 
 function goAdmin(){
-window.location.href="/admin_login"
+    window.location.href="/admin_login";
 }
 
 </script>
 
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
 </body>
 </html>

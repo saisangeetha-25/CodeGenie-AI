@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeGenie AI</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            height:100vh;
+            background:url("{{ url_for('static', filename='images/codegenie_bg.jpeg') }}");
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            display:flex;
+            justify-content:center;
+            align-items:flex-end;
+            position:relative;
+            left:80px;
+            bottom:50px;
+        }
+
+        .start-btn{
+            position:absolute;
+            bottom:50px;
+            left:80px;
+
+            padding:16px 40px;
+            font-size:22px;
+            font-weight:600;
+
+            color:#ffffff;
+            text-decoration:none;
+
+            border:2px solid #00d4ff;
+            border-radius:50px;
+
+            background:rgba(0,212,255,0.12);
+            backdrop-filter:blur(10px);
+
+            box-shadow:
+                0 0 10px #00d4ff,
+                0 0 20px #00d4ff,
+                0 0 40px rgba(0,212,255,0.6);
+
+            transition:all 0.3s ease;
+        }
+
+        .start-btn:hover{
+            transform:translateY(-5px) scale(1.05);
+
+            box-shadow:
+                0 0 15px #00d4ff,
+                0 0 30px #00d4ff,
+                0 0 60px rgba(0,212,255,0.8);
+
+            background:rgba(0,212,255,0.25);
+        }
+
+
+        @keyframes float {
+            0%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-8px);
+            }
+            100%{
+                transform:translateY(0);
+            }
+        }
+
+        .start-btn{
+            animation:float 2.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{{ url_for('select_role') }}" class="start-btn">
+        Dive Into CODEGENIE AI →
+    </a>
+
+
+<script src="{{ url_for('static', filename='theme.js') }}"></script>
+
+</body>
+</html>
