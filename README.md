@@ -1,76 +1,204 @@
-# CodeGenie-AI : Code Generator and Explainer 🚀
+# 🤖 CodeGenie AI – AI Code Generator & Explainer
 
-An AI-powered Code Generator and Code Explainer built using Generative AI techniques. CodeGenie-AI helps developers generate code snippets from natural language prompts and provides detailed explanations of code functionality, making programming more accessible and productive.
+**CodeGenie AI** is an AI-powered web application that helps users generate and understand code using natural language.
 
-## 📌 Project Overview
+This project was developed as part of the **Infosys Springboard Virtual Internship 6.0 – Batch 13**, providing hands-on experience in Generative AI, Large Language Models, Python web development, API integration, and database management.
 
-CodeGenie-AI is designed to bridge the gap between human language and programming languages by leveraging Large Language Models (LLMs). Users can enter a prompt describing the desired functionality, and the system generates code along with a clear explanation of the logic used.
+## 🚀 What is CodeGenie AI?
+
+CodeGenie AI allows users to describe what they want to build in natural language and receive:
+
+* AI-generated code
+* A clear explanation of the generated code
+* Syntax-highlighted code
+* Options to save and manage generated code
+* Code history and bookmarks
+
+The project aims to make coding assistance more accessible by combining natural language interaction with Generative AI.
 
 ## ✨ Features
 
-- Generate code from natural language prompts
-- Explain existing code in simple language
-- Support for multiple programming languages
-- User-friendly interface
-- AI-powered code understanding
-- Fast and accurate responses
-- Admin Dashboard
-- You can save code in various formats like pdf,docs
-- codes can be bookmarked
+### 👤 User Features
 
-## 🛠️ Technologies Used
+* User registration and login
+* Profile management
+* AI-powered code generation
+* AI-powered code explanation
+* Code history
+* Bookmark generated code
+* Feedback submission
+* Export generated code
+* Login activity tracking
 
-- Python
-- Generative AI
-- Large Language Models (LLMs)
-- Prompt Engineering
-- Streamlit / Flask (Update according to your project)
-- Git & GitHub
+### 🛠️ Admin Features
 
-## 🚀 How It Works
+* Admin authentication
+* Admin dashboard
+* User management
+* Feedback management
+* Usage analytics
+* Login tracking
 
-1. User enters a coding prompt.
-2. The AI model processes the prompt.
-3. Code is generated based on the requirements.
-4. The generated code is displayed.
-5. A detailed explanation of the code is provided.
+## 🧠 How It Works
+
+```text
+User enters a coding requirement
+            ↓
+       Flask Backend
+            ↓
+      OpenRouter API
+            ↓
+        GPT Model
+            ↓
+     Generated Code
+            ↓
+   Code Explanation
+            ↓
+     User Interface
+```
+
+Users can describe their requirement in natural language, and the application sends the request to an AI model through the OpenRouter API. The generated code and explanation are then displayed through the Flask web application.
+
+## 🛠️ Tech Stack
+
+| Technology     | Usage                           |
+| -------------- | ------------------------------- |
+| Python         | Application development         |
+| Flask          | Web framework                   |
+| SQLite         | Database                        |
+| HTML           | Frontend structure              |
+| CSS            | Styling                         |
+| JavaScript     | Frontend interactions           |
+| OpenRouter API | AI/LLM integration              |
+| GPT Model      | Code generation and explanation |
+| Prism.js       | Syntax highlighting             |
+| Git & GitHub   | Version control                 |
+
+## 📂 Project Structure
+
+```text
+CodeGenie-AI/
+│
+├── app.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── render.yaml
+├── README.md
+│
+├── static/
+│   ├── images/
+│   ├── style.css
+│   └── theme.js
+│
+└── templates/
+    ├── landing.html
+    ├── home.html
+    ├── login.html
+    ├── register.html
+    ├── profile.html
+    ├── history.html
+    ├── bookmarks.html
+    ├── feedback.html
+    ├── analytics.html
+    └── admin/
+```
+
+## 💻 Running the Project Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/saisangeetha-25/CodeGenie-AI.git
+cd CodeGenie-AI
+```
+
+### 2. Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Activate it on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file based on `.env.example` and add your own API credentials.
+
+Example:
+
+```env
+OPENROUTER_API_KEY=your_api_key_here
+SECRET_KEY=your_secret_key_here
+```
+
+**Never commit your `.env` file or API keys to GitHub.**
+
+### 5. Run the application
+
+```bash
+python app.py
+```
+
+Then open the local URL shown by Flask in your browser.
 
 ## 🎯 Learning Outcomes
 
-Through this project, I gained practical experience in:
+Building CodeGenie AI helped me gain practical experience in:
 
-- Generative AI Applications
-- Prompt Engineering
-- LLM Integration
-- Python Development
-- AI-Based Problem Solving
-- GitHub Project Management
+* Python development
+* Flask web application development
+* Generative AI integration
+* Large Language Models (LLMs)
+* Prompt engineering
+* REST/API integration
+* SQLite database integration
+* User authentication
+* Frontend development
+* Git and GitHub
+* Building AI-powered applications
 
-## 📸 Screenshots
+## 🎓 Internship Context
 
-Add screenshots of:
-- Home Page
-- Code Generation Output
-- Code Explanation Output
+This project was developed as part of the:
+
+**Infosys Springboard Virtual Internship 6.0 – Batch 13**
+
+The internship provided an opportunity to apply technical concepts in a practical project and gain hands-on experience in AI and software development.
 
 ## 🔮 Future Enhancements
 
-- Code debugging support
-- Multi-language translation
-- Voice-based prompt input
-- Code optimization suggestions
-- Export generated code
+Possible future improvements include:
+
+* AI-powered code debugging
+* Code optimization suggestions
+* Additional programming language support
+* Improved code analysis
+* Voice-based coding prompts
+* Deployment as a publicly accessible web application
 
 ## 👩‍💻 Author
 
 **Sai Sangeetha Padakanti**
 
-Computer Science Undergraduate
+B.Tech – Computer Science and Engineering
 
-GitHub: https://github.com/saisangeetha-25 
+GitHub:
+https://github.com/saisangeetha-25
 
-LinkedIn: https://www.linkedin.com/in/saisangeethapadakanti
+LinkedIn:
+https://www.linkedin.com/in/saisangeethapadakanti
 
 ---
 
-⭐ If you found this project useful, feel free to star the repository.
+⭐ If you find this project interesting, feel free to explore the repository.
